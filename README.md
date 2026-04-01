@@ -2,7 +2,7 @@
 
 A web-based search tool for browsing public media on 4shared. Search by filename pattern, date, or just press Search to browse the latest uploads.
 
-## Live Demo
+## Use It Now — No Download Required
 
 🔗 **https://fourshared-search.onrender.com**
 
