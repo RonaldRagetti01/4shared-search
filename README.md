@@ -23,3 +23,12 @@ A web-based search tool for browsing public media on 4shared. Search by filename
 ## Built With
 
 Python + Flask, hosted on Render. No trackers, no ads, no login required.
+
+## Support & Donations
+
+If you find this tool useful and would like to support me, consider donating:
+
+- **PayPal:** [https://www.paypal.me/RonaldsServices](https://www.paypal.me/RonaldsServices)
+- **Bitcoin (BTC):** `bc1qpdnu3mcl96g8puru982ndq3kyft7f9srjnx3mt`
+
+Your support is greatly appreciated!
