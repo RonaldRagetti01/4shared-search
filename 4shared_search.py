@@ -103,6 +103,83 @@ HTML_PAGE = r"""<!DOCTYPE html>
     flex-shrink: 0;
   }
   .tg-badge:hover { background: #1a8ec7; }
+  .donate-wrapper {
+    position: relative;
+    margin-left: 10px;
+    flex-shrink: 0;
+  }
+  .donate-btn {
+    background: #f5a623;
+    color: #0d0f14;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background .2s;
+  }
+  .donate-btn:hover { background: #e8831a; }
+  .donate-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    min-width: 260px;
+    z-index: 200;
+    box-shadow: 0 8px 24px rgba(0,0,0,.4);
+  }
+  .donate-dropdown.show { display: block; }
+  .donate-dropdown-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .donate-option {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  .donate-option-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .donate-option a {
+    color: #29a9eb;
+    font-size: 13px;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .donate-option a:hover { text-decoration: underline; }
+  .donate-option-addr {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--text);
+    word-break: break-all;
+    background: var(--bg);
+    padding: 6px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .donate-option-addr:hover { background: var(--border); }
+  .donate-note {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+    margin-top: 6px;
+  }
 
   /* ── Search panel ── */
   .search-panel {
@@ -433,6 +510,21 @@ HTML_PAGE = r"""<!DOCTYPE html>
   <div class="logo-text">4shared <span>Search</span></div>
   <div class="header-sub">// archive browser</div>
   <a href="https://t.me/ronaldragetti1" target="_blank" class="tg-badge">✈ Contact @ronaldragetti1</a>
+  <div class="donate-wrapper">
+    <button class="donate-btn" onclick="toggleDonate(event)">💛 Support</button>
+    <div class="donate-dropdown" id="donateDropdown">
+      <div class="donate-dropdown-title">☕ Consider donating</div>
+      <div class="donate-option">
+        <span class="donate-option-label">PayPal</span>
+        <a href="https://www.paypal.me/RonaldsServices" target="_blank">https://www.paypal.me/RonaldsServices</a>
+      </div>
+      <div class="donate-option">
+        <span class="donate-option-label">Bitcoin (BTC) — click to copy</span>
+        <div class="donate-option-addr" onclick="copyBTC(this)">bc1qpdnu3mcl96g8puru982ndq3kyft7f9srjnx3mt</div>
+      </div>
+      <div class="donate-note">Your support is greatly appreciated! 🙏</div>
+    </div>
+  </div>
 </header>
 
 <div class="search-panel">
@@ -683,6 +775,30 @@ function startDownload(btn, encodedUrl, encodedFilename, encodedThumb) {
       setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 3000);
       showToast('Download failed: ' + err.message);
     });
+}
+
+function toggleDonate(e) {
+  e.stopPropagation();
+  document.getElementById('donateDropdown').classList.toggle('show');
+}
+
+document.addEventListener('click', () => {
+  document.getElementById('donateDropdown').classList.remove('show');
+});
+
+function copyBTC(el) {
+  const addr = el.textContent.trim();
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(addr).then(() => showToast('BTC address copied!'));
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = addr;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('BTC address copied!');
+  }
 }
 
 function copyFolder(url) {
