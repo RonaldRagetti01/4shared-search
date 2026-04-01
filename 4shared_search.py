@@ -423,8 +423,11 @@ HTML_PAGE = r"""<!DOCTYPE html>
   <div class="search-panel-inner">
   <div class="search-tagline">&#9632; find anything</div>
   <div class="search-bar">
-    <input type="text" id="query" placeholder="e.g. 20240201  or  WA0001  or  Camera Roll" autocomplete="off">
+    <input type="text" id="query" placeholder="Search or leave blank for latest..." autocomplete="off">
     <button class="btn-search" onclick="doSearch()">SEARCH</button>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:11px;color:#6b7280;margin-bottom:8px;">
+    try: 20240201 &nbsp;&bull;&nbsp; WA0001 &nbsp;&bull;&nbsp; Camera Roll &nbsp;&bull;&nbsp; or leave blank for latest
   </div>
   <div class="filters">
     <span class="filter-label">TYPE</span>
