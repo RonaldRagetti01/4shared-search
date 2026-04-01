@@ -88,6 +88,21 @@ HTML_PAGE = r"""<!DOCTYPE html>
     margin-left: auto;
     font-family: 'Space Mono', monospace;
   }
+  .tg-badge {
+    margin-left: 14px;
+    background: #29a9eb;
+    color: #fff;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 20px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background .2s;
+    flex-shrink: 0;
+  }
+  .tg-badge:hover { background: #1a8ec7; }
 
   /* ── Search panel ── */
   .search-panel {
@@ -417,6 +432,7 @@ HTML_PAGE = r"""<!DOCTYPE html>
   <div class="logo-icon">4S</div>
   <div class="logo-text">4shared <span>Search</span></div>
   <div class="header-sub">// archive browser</div>
+  <a href="https://t.me/ronaldragetti1" target="_blank" class="tg-badge">✈ Contact @ronaldragetti1</a>
 </header>
 
 <div class="search-panel">
