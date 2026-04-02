@@ -55,13 +55,27 @@ HTML_PAGE = r"""<!DOCTYPE html>
   header {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
-    padding: 18px 32px;
+    padding: 14px 32px;
     display: flex;
     align-items: center;
-    gap: 14px;
+    flex-wrap: wrap;
+    gap: 10px;
     position: sticky;
     top: 0;
     z-index: 100;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+    min-width: 0;
+  }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
   }
   .logo-icon {
     width: 36px; height: 36px;
@@ -89,7 +103,6 @@ HTML_PAGE = r"""<!DOCTYPE html>
     font-family: 'Space Mono', monospace;
   }
   .tg-badge {
-    margin-left: 14px;
     background: #29a9eb;
     color: #fff;
     font-family: 'Space Mono', monospace;
@@ -495,34 +508,42 @@ HTML_PAGE = r"""<!DOCTYPE html>
   .toast.show { transform: translateX(-50%) translateY(0); }
 
   @media (max-width: 600px) {
-    header { padding: 14px 16px; }
-    .search-panel { padding: 10px 14px; top: 61px; }
+    header { padding: 10px 14px; gap: 8px; }
+    .header-sub { display: none; }
+    .search-panel { padding: 10px 14px; top: 58px; }
     .status-bar, .results-wrap { padding: 0 14px; }
     .search-bar { flex-direction: column; }
     .btn-search { padding: 13px; }
+    .tg-badge { font-size: 10px; padding: 5px 10px; }
+    .donate-btn { font-size: 10px; padding: 5px 10px; }
+    .donate-dropdown { right: -10px; min-width: 240px; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo-icon">4S</div>
-  <div class="logo-text">4shared <span>Search</span></div>
-  <div class="header-sub">// archive browser</div>
-  <a href="https://t.me/ronaldragetti1" target="_blank" class="tg-badge">✈ Contact @ronaldragetti1</a>
-  <div class="donate-wrapper">
-    <button class="donate-btn" onclick="toggleDonate(event)">💛 Support</button>
-    <div class="donate-dropdown" id="donateDropdown">
-      <div class="donate-dropdown-title">☕ Consider donating</div>
-      <div class="donate-option">
-        <span class="donate-option-label">PayPal</span>
-        <a href="https://www.paypal.me/RonaldsServices" target="_blank">https://www.paypal.me/RonaldsServices</a>
+  <div class="header-left">
+    <div class="logo-icon">4S</div>
+    <div class="logo-text">4shared <span>Search</span></div>
+    <div class="header-sub">// archive browser</div>
+  </div>
+  <div class="header-right">
+    <a href="https://t.me/ronaldragetti1" target="_blank" class="tg-badge">✈ Contact @ronaldragetti1</a>
+    <div class="donate-wrapper">
+      <button class="donate-btn" onclick="toggleDonate(event)">💛 Support</button>
+      <div class="donate-dropdown" id="donateDropdown">
+        <div class="donate-dropdown-title">☕ Consider donating</div>
+        <div class="donate-option">
+          <span class="donate-option-label">PayPal</span>
+          <a href="https://www.paypal.me/RonaldsServices" target="_blank">https://www.paypal.me/RonaldsServices</a>
+        </div>
+        <div class="donate-option">
+          <span class="donate-option-label">Bitcoin (BTC) — click to copy</span>
+          <div class="donate-option-addr" onclick="copyBTC(this)">bc1qpdnu3mcl96g8puru982ndq3kyft7f9srjnx3mt</div>
+        </div>
+        <div class="donate-note">Your support is greatly appreciated! 🙏</div>
       </div>
-      <div class="donate-option">
-        <span class="donate-option-label">Bitcoin (BTC) — click to copy</span>
-        <div class="donate-option-addr" onclick="copyBTC(this)">bc1qpdnu3mcl96g8puru982ndq3kyft7f9srjnx3mt</div>
-      </div>
-      <div class="donate-note">Your support is greatly appreciated! 🙏</div>
     </div>
   </div>
 </header>
