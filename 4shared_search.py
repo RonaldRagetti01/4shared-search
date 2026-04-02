@@ -508,15 +508,17 @@ HTML_PAGE = r"""<!DOCTYPE html>
   .toast.show { transform: translateX(-50%) translateY(0); }
 
   @media (max-width: 600px) {
-    header { padding: 10px 14px; gap: 8px; }
+    header { padding: 10px 14px; flex-direction: column; align-items: flex-start; gap: 8px; }
+    .header-left { width: 100%; }
+    .header-right { width: 100%; justify-content: flex-start; }
     .header-sub { display: none; }
-    .search-panel { padding: 10px 14px; top: 58px; }
+    .search-panel { padding: 10px 14px; top: 88px; }
     .status-bar, .results-wrap { padding: 0 14px; }
     .search-bar { flex-direction: column; }
     .btn-search { padding: 13px; }
     .tg-badge { font-size: 10px; padding: 5px 10px; }
     .donate-btn { font-size: 10px; padding: 5px 10px; }
-    .donate-dropdown { right: -10px; min-width: 240px; }
+    .donate-dropdown { right: auto; left: 0; min-width: 240px; }
   }
 </style>
 </head>
