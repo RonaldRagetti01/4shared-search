@@ -642,6 +642,7 @@ function doSearch() {
 }
 
 function loadMore() {
+  suppressShow = true;
   fetchResults(3);
 }
 
@@ -687,6 +688,7 @@ function fetchResults(pages) {
       cards.forEach((c, i) => {
         grid.appendChild(buildCard(c, i));
       });
+      suppressShow = false;
 
       const qLabel = currentQuery ? `"${currentQuery}"` : 'all files';
       status.textContent = `Showing ${totalLoaded} result(s)  •  ${qLabel}`;
@@ -808,12 +810,13 @@ function startDownload(btn, encodedUrl, encodedFilename, encodedThumb) {
 
 // Hide search panel on scroll down, show on scroll up
 let lastScroll = 0;
+let suppressShow = false;
 const searchPanel = document.querySelector('.search-panel');
 window.addEventListener('scroll', () => {
   const current = window.scrollY;
   if (current > lastScroll && current > 100) {
     searchPanel.classList.add('hidden');
-  } else {
+  } else if (current < lastScroll && !suppressShow) {
     searchPanel.classList.remove('hidden');
   }
   lastScroll = current;
