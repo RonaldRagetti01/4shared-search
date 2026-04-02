@@ -811,13 +811,19 @@ function startDownload(btn, encodedUrl, encodedFilename, encodedThumb) {
 // Hide search panel on scroll down, show on scroll up
 let lastScroll = 0;
 let suppressShow = false;
+let scrollUpDistance = 0;
 const searchPanel = document.querySelector('.search-panel');
 window.addEventListener('scroll', () => {
   const current = window.scrollY;
   if (current > lastScroll && current > 100) {
     searchPanel.classList.add('hidden');
+    scrollUpDistance = 0;
   } else if (current < lastScroll && !suppressShow) {
-    searchPanel.classList.remove('hidden');
+    scrollUpDistance += lastScroll - current;
+    if (scrollUpDistance > 60) {
+      searchPanel.classList.remove('hidden');
+      scrollUpDistance = 0;
+    }
   }
   lastScroll = current;
 }, { passive: true });
