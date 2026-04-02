@@ -204,6 +204,12 @@ HTML_PAGE = r"""<!DOCTYPE html>
     z-index: 90;
     padding: 12px 24px;
     margin: 0;
+    transition: transform .3s ease, opacity .3s ease;
+  }
+  .search-panel.hidden {
+    transform: translateY(-110%);
+    opacity: 0;
+    pointer-events: none;
   }
   .search-panel-inner {
     max-width: 1380px;
@@ -799,6 +805,19 @@ function startDownload(btn, encodedUrl, encodedFilename, encodedThumb) {
       showToast('Download failed: ' + err.message);
     });
 }
+
+// Hide search panel on scroll down, show on scroll up
+let lastScroll = 0;
+const searchPanel = document.querySelector('.search-panel');
+window.addEventListener('scroll', () => {
+  const current = window.scrollY;
+  if (current > lastScroll && current > 100) {
+    searchPanel.classList.add('hidden');
+  } else {
+    searchPanel.classList.remove('hidden');
+  }
+  lastScroll = current;
+}, { passive: true });
 
 function toggleDonate(e) {
   e.stopPropagation();
