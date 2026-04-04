@@ -257,6 +257,20 @@ HTML_PAGE = r"""<!DOCTYPE html>
   }
   .btn-search:hover { background: var(--accent2); }
   .btn-search:active { transform: scale(.97); }
+  .btn-dice {
+    background: var(--surface);
+    color: var(--text);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 20px;
+    padding: 0 16px;
+    cursor: pointer;
+    transition: border-color .2s, transform .1s, background .2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .btn-dice:hover { border-color: var(--accent); background: var(--card-bg); }
+  .btn-dice:active { transform: scale(.97); }
 
   .filters {
     display: flex;
@@ -562,6 +576,7 @@ HTML_PAGE = r"""<!DOCTYPE html>
   <div class="search-bar">
     <input type="text" id="query" placeholder="Search or leave blank for latest..." autocomplete="off">
     <button class="btn-search" onclick="doSearch()">SEARCH</button>
+    <button class="btn-dice" onclick="randomDate()" title="Random date search">🎲</button>
   </div>
   <div style="font-family:'Space Mono',monospace;font-size:11px;color:#6b7280;margin-bottom:8px;">
     try: 20240201 &nbsp;&bull;&nbsp; WA0001 &nbsp;&bull;&nbsp; Camera Roll &nbsp;&bull;&nbsp; or just press SEARCH for latest uploads
@@ -827,6 +842,18 @@ window.addEventListener('scroll', () => {
   }
   lastScroll = current;
 }, { passive: true });
+
+function randomDate() {
+  const start = new Date(2005, 0, 1).getTime();
+  const end   = new Date().getTime();
+  const rand  = new Date(start + Math.random() * (end - start));
+  const yyyy  = rand.getFullYear();
+  const mm    = String(rand.getMonth() + 1).padStart(2, '0');
+  const dd    = String(rand.getDate()).padStart(2, '0');
+  const dateStr = `${yyyy}${mm}${dd}`;
+  document.getElementById('query').value = dateStr;
+  doSearch();
+}
 
 function toggleDonate(e) {
   e.stopPropagation();
