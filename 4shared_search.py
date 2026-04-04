@@ -548,7 +548,7 @@ HTML_PAGE = r"""<!DOCTYPE html>
         </div>
         <div class="donate-option">
           <span class="donate-option-label">Bitcoin (BTC) — click to copy</span>
-          <div class="donate-option-addr" onclick="copyBTC(this)">bc1qpdnu3mcl96g8puru982ndq3kyft7f9srjnx3mt</div>
+          <div class="donate-option-addr" onclick="copyBTC(this)">bc1q3pf7pvcndxqrsrgynxd020r0scuuqukfdc0fta</div>
         </div>
         <div class="donate-note">Your support is greatly appreciated! 🙏</div>
       </div>
